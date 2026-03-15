@@ -1,32 +1,32 @@
-const TaiKhoan = require('../model/Model.TaiKhoan');
+const NhanVien = require('../model/Model.NhanVien');
 module.exports = {
   getAll: (req, res) => {
-    TaiKhoan.getAll((result) => {
+    NhanVien.getAll((result) => {
       res.send(result);
     });
   },
   getById: (req, res) => {
     const MaNV = req.params.MaNV;
-    TaiKhoan.getById(MaNV, (result) => {
+    NhanVien.getById(MaNV, (result) => {
       res.send(result);
     });
   },
   create: (req, res) => {
-    const taikhoan = req.body;
-    TaiKhoan.create(taikhoan, (result) => {
+    const nhanvien = req.body;
+    NhanVien.create(nhanvien, (result) => {
       res.send(result);
     });
   },
   update: (req, res) => {
     const MaNV = req.params.MaNV;
-    const taikhoan = req.body;
-    TaiKhoan.update(taikhoan, MaNV, (result) => {
+    const nhanvien = req.body;
+    NhanVien.update(nhanvien, MaNV, (result) => {
       res.send(result);
     });
   },
   delete: (req, res) => {
     const MaNV = req.params.MaNV;
-    TaiKhoan.delete(MaNV, (result) => {
+    NhanVien.delete(MaNV, (result) => {
       res.send(result);
     });
   },

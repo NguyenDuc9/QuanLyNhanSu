@@ -14,4 +14,45 @@ TaiKhoan.getAll = (callback) => {
     callback(result);
   });
 };
+
+TaiKhoan.getById = (MaNV, callback) => {
+  const sql = 'Select * from taikhoan where MaNV = ?';
+  db.query(sql, [MaNV], (err, result) => {
+    if (err) {
+      return callback('Error: ', err);
+    }
+    callback(result);
+  });
+};
+
+TaiKhoan.create = (taikhoan, callback) => {
+  const sql = 'insert into taikhoan set ?';
+  db.query(sql, [taikhoan], (err, result) => {
+    if (err) {
+      return callback('Error: ', err);
+    }
+    callback(result);
+  });
+};
+
+TaiKhoan.update = (taikhoan, MaNV, callback) => {
+  const sql = 'update taikhoan set ? where MaNV = ?';
+  db.query(sql, [taikhoan, MaNV], (err, result) => {
+    if (err) {
+      return callback('Error: ', err);
+    }
+    callback(result);
+  });
+};
+
+TaiKhoan.delete = (MaNV, callback) => {
+  const sql = 'delere from taikhoan where MaNV = ?';
+  db.query(sql, [MaNV], (err, result) => {
+    if (err) {
+      return callback('Error: ', err);
+    }
+    callback(result);
+  });
+};
+
 module.exports = TaiKhoan;
