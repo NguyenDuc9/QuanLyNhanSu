@@ -12,21 +12,31 @@ module.exports = {
     });
   },
   create: (req, res) => {
-    const thuongphat = req.body;
+    const thuongphat = {
+      MaNV: req.body.MaNV,
+      Thang: req.body.Thang,
+      Nam: req.body.Nam,
+      Loai: req.body.Loai,
+      SoTien: req.body.SoTien,
+      LyDo: req.body.LyDo,
+    };
+
     ThuongPhat.create(thuongphat, (result) => {
       res.send(result);
     });
   },
   update: (req, res) => {
-    const MaNV = req.params.MaNV;
+    const MaTP = req.params.MaTP;
+    console.log(MaTP);
     const thuongphat = req.body;
-    ThuongPhat.update(thuongphat, MaNV, (result) => {
+    ThuongPhat.update(thuongphat, MaTP, (result) => {
       res.send(result);
     });
   },
   delete: (req, res) => {
-    const MaNV = req.params.MaNV;
-    ThuongPhat.delete(MaNV, (result) => {
+    const MaTP = req.params.MaTP;
+    console.log(MaTP);
+    ThuongPhat.delete(MaTP, (result) => {
       res.send(result);
     });
   },

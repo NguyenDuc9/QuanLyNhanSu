@@ -2,7 +2,11 @@ const NhanVien = require('../model/Model.NhanVien');
 module.exports = {
   getAll: (req, res) => {
     NhanVien.getAll((result) => {
-      res.send(result);
+      const data = result.map((nv) => ({
+        ...nv,
+        NgaySinh: nv.NgaySinh.toISOString().split('T')[0],
+      }));
+      res.send(data);
     });
   },
   getById: (req, res) => {

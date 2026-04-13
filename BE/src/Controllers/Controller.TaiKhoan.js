@@ -18,15 +18,15 @@ module.exports = {
     });
   },
   update: (req, res) => {
-    const MaNV = req.params.MaNV;
+    const TenDangNhap = req.params.TenDangNhap;
     const taikhoan = req.body;
-    TaiKhoan.update(taikhoan, MaNV, (result) => {
+    TaiKhoan.update(taikhoan, TenDangNhap, (result) => {
       res.send(result);
     });
   },
   delete: (req, res) => {
-    const MaNV = req.params.MaNV;
-    TaiKhoan.delete(MaNV, (result) => {
+    const TenDangNhap = req.params.TenDangNhap;
+    TaiKhoan.delete(TenDangNhap, (result) => {
       res.send(result);
     });
   },

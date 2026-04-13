@@ -7,7 +7,6 @@ const NhanVien = (nhanvien) => {
   this.DienThoai = nhanvien.DienThoai;
   this.DiaChi = nhanvien.DiaChi;
   this.MaPhongBan = nhanvien.MaPhongBan;
-  this.MaChucVu = nhanvien.MaChucVu;
   this.TrangThai = nhanvien.TrangThai;
 };
 NhanVien.getAll = (callback) => {
@@ -24,7 +23,7 @@ NhanVien.getById = (MaNV, callback) => {
   const sql = 'Select * from NhanVien where MaNV = ?';
   db.query(sql, [MaNV], (err, result) => {
     if (err) {
-      return callback('Error: ', err);
+      return callback(err);
     }
     callback(result);
   });
@@ -34,7 +33,8 @@ NhanVien.create = (nhanvien, callback) => {
   const sql = 'insert into NhanVien set ?';
   db.query(sql, [nhanvien], (err, result) => {
     if (err) {
-      return callback('Error: ', err);
+      console.log(err);
+      return callback(err);
     }
     callback(result);
   });
@@ -44,7 +44,8 @@ NhanVien.update = (nhanvien, MaNV, callback) => {
   const sql = 'update NhanVien set ? where MaNV = ?';
   db.query(sql, [nhanvien, MaNV], (err, result) => {
     if (err) {
-      return callback('Error: ', err);
+      console.log(err);
+      return callback(err);
     }
     callback(result);
   });
@@ -54,7 +55,7 @@ NhanVien.delete = (MaNV, callback) => {
   const sql = 'delete from NhanVien where MaNV = ?';
   db.query(sql, [MaNV], (err, result) => {
     if (err) {
-      return callback('Error: ', err);
+      return callback(err);
     }
     callback(result);
   });

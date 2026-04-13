@@ -2,31 +2,38 @@ const HopDong = require('../model/Model.HopDongLD');
 module.exports = {
   getAll: (req, res) => {
     HopDong.getAll((result) => {
-      res.send(result);
+      const data = result.map((nv) => ({
+        ...nv,
+        NgayBatDau: nv.NgayBatDau.toISOString().split('T')[0],
+        NgayKetThuc: nv.NgayKetThuc.toISOString().split('T')[0],
+      }));
+      res.send(data);
     });
   },
   getById: (req, res) => {
-    const MaNV = req.params.MaNV;
-    HopDong.getById(MaNV, (result) => {
+    const MaHD = req.params.MaHD;
+    HopDong.getById(MaHD, (result) => {
       res.send(result);
     });
   },
   create: (req, res) => {
+    const MaHD = req.params.MaHD;
     const hopdong = req.body;
-    HopDong.create(hopdong, (result) => {
+    console.log(hopdong);
+    HopDong.update(hopdong, MaHD, (result) => {
       res.send(result);
     });
   },
   update: (req, res) => {
-    const MaNV = req.params.MaNV;
+    const MaHD = req.params.MaHD;
     const hopdong = req.body;
-    HopDong.update(hopdong, MaNV, (result) => {
+    HopDong.update(hopdong, MaHD, (result) => {
       res.send(result);
     });
   },
   delete: (req, res) => {
-    const MaNV = req.params.MaNV;
-    HopDong.delete(MaNV, (result) => {
+    const MaHD = req.params.MaHD;
+    HopDong.delete(MaHD, (result) => {
       res.send(result);
     });
   },
