@@ -29,6 +29,16 @@ NhanVien.getById = (MaNV, callback) => {
   });
 };
 
+NhanVien.getByMaPB = (MaPB, callback) => {
+  const sql = 'Select * from NhanVien where MaPhongBan = ?';
+  db.query(sql, [MaPB], (err, result) => {
+    if (err) {
+      return callback(err);
+    }
+    callback(result);
+  });
+};
+
 NhanVien.create = (nhanvien, callback) => {
   const sql = 'insert into NhanVien set ?';
   db.query(sql, [nhanvien], (err, result) => {

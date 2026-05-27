@@ -15,6 +15,12 @@ module.exports = {
       res.send(result);
     });
   },
+  getByMaPB: (req, res) => {
+    const MaPB = req.params.id;
+    NhanVien.getByMaPB(MaPB, (result) => {
+      res.send(result);
+    });
+  },
   create: (req, res) => {
     const nhanvien = req.body;
     NhanVien.create(nhanvien, (result) => {
