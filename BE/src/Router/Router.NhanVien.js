@@ -3,6 +3,7 @@ const router = express.Router();
 const NhanVienController = require('../Controllers/Controller.NhanVien');
 
 router.get('/', NhanVienController.getAll);
+router.get('/thong-tin-nhan-vien/:MaNV', NhanVienController.getByMaNV);
 router.get('/:MaNV', NhanVienController.getById);
 router.get('/phong-ban/:id', NhanVienController.getByMaPB);
 router.post('/', NhanVienController.create);

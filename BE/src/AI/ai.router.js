@@ -38,11 +38,12 @@ router.post('/chat', async (req, res) => {
 
     Hãy dựa vào dữ liệu nhân viên được cung cấp ở trên để trả lời câu hỏi. Trả lời ngắn gọn, thông minh, chính xác và bằng tiếng Việt.
     `;
-
+    console.log('OPENROUTER_API_KEY:', process.env.OPENROUTER_API_KEY);
+    console.log('Length:', process.env.OPENROUTER_API_KEY?.length);
     // Gọi model Gemini 1.5 Flash thông qua OpenRouter
     const response = await openai.chat.completions.create({
-        model: 'openai/gpt-3.5-turbo'  ,
-        messages: [{ role: 'user', content: prompt }],
+      model: 'openai/gpt-3.5-turbo',
+      messages: [{ role: 'user', content: prompt }],
     });
 
     const responseText = response.choices[0].message.content;

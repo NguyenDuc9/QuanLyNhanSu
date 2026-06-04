@@ -40,4 +40,10 @@ module.exports = {
       res.send(result);
     });
   },
+  getByMaNV: (req, res) => {
+    const MaNV = req.params.MaNV;
+    NhanVien.getByMaNV(MaNV, (result) => {
+      res.send(result);
+    });
+  },
 };

@@ -70,5 +70,38 @@ NhanVien.delete = (MaNV, callback) => {
     callback(result);
   });
 };
+NhanVien.getByMaNV = (MaNV, callback) => {
+  const sql = `
+    SELECT 
+        nv.MaNV,
+        nv.HoTen,
+        pb.TenPhongBan,
 
+        TIMESTAMPDIFF(MONTH, hd.NgayBatDau, CURDATE()) AS ThoiGianLamViec,
+
+        COUNT(CASE WHEN tp.Loai = 'Thuong' THEN 1 END) AS SoLanThuong,
+        COUNT(CASE WHEN tp.Loai = 'Phat' THEN 1 END) AS SoLanPhat
+
+    FROM NhanVien nv
+    LEFT JOIN HopDong hd ON nv.MaNV = hd.MaNV
+    LEFT JOIN ThuongPhat tp ON nv.MaNV = tp.MaNV
+    LEFT JOIN PhongBan pb ON nv.MaPhongBan = pb.MaPhongBan
+
+    WHERE nv.MaNV = ?
+
+    GROUP BY 
+        nv.MaNV,
+        nv.HoTen,
+        pb.TenPhongBan,
+        hd.NgayBatDau
+  `;
+
+  db.query(sql, [MaNV], (err, result) => {
+    console.log('Kết quả truy vấn getByMaNV:', result);
+    if (err) {
+      return callback(err);
+    }
+    callback(null, result);
+  });
+};
 module.exports = NhanVien;
