@@ -42,7 +42,12 @@ module.exports = {
   },
   getByMaNV: (req, res) => {
     const MaNV = req.params.MaNV;
-    NhanVien.getByMaNV(MaNV, (result) => {
+
+    NhanVien.getByMaNV(MaNV, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
       res.send(result);
     });
   },

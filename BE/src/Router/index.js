@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+router.use('/de-xuat-tang-luong', require('./Route.DeXuatTangLuong'));
+
+router.use('/dot-tang-luong', require('./Route.DotTangLuong'));
+
 // Auth: login, refresh (công khai)
 router.use('/auth', require('./auth.router'));
 
@@ -66,4 +70,5 @@ router.use('/kinh-nghiem-lam-viec', require('./KinhNghiemLamViecRouter'));
 
 // Chat
 router.use('/chat', require('./chatRoutes'));
+
 module.exports = router;

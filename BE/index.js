@@ -11,6 +11,8 @@ const middleware = require('./src/middlewares/auth.middlewares.js');
 
 const aiRouter = require('./src/AI/ai.router.js');
 
+const ManageraiRouter = require('./src/AI/aiManager.js');
+
 const chatRoutes = require('./src/Router/chatRoutes.js');
 
 const app = express();
@@ -32,7 +34,7 @@ app.get('/', (req, res) => {
 });
 
 // SOCKET
-app.use('/api/chat', chatRoutes);
+// app.use('/api/chat', chatRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -67,9 +69,9 @@ io.on('connection', (socket) => {
 });
 
 app.use('/api/ai', aiRouter);
-
+app.use('/api/ManagerAichat', ManageraiRouter);
 app.use('/api', require('./src/Router'));
-app.use(middleware);
+// app.use(middleware);
 
 server.listen(port, () => {
   console.log(
